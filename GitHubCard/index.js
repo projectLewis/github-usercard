@@ -72,6 +72,16 @@ const getProfile = (profile) => {
     console.log(error);
   })
 }
+const getProfileFollowers = (profile) => {
+  axios.get(`https://api.github.com/users/${profile}/followers`)
+  .then((response) => {
+    response.data.forEach((item, idx) => {
+      getProfile(response.data[idx].login)
+    })
+  }).catch((error) => {
+    console.log(error);
+  })
+}
 
 const githubProfileGen = (arg) => {
   const {avatar_url, name, login, location, html_url, followers, following, bio} = arg.data;
@@ -106,14 +116,18 @@ const githubProfileGen = (arg) => {
   profileFollowing.textContent = `Following: ${following}`
   const profileBio = document.createElement('p');
   profileBio.textContent = bio ? `Bio: ${bio}` : null;
+
+  // Stretch for calendar
   const calendar = document.createElement('img');
   calendar.src = `http://ghchart.rshah.org/${login}`;
   calendar.alt = `${login} Github Chart`
   calendar.className = 'calendar';
 
   cards.appendChild(card);
+
   card.appendChild(img);
   card.appendChild(cardInfo);
+
   cardInfo.appendChild(profileName);
   cardInfo.appendChild(username);
   cardInfo.appendChild(profileLocation);
@@ -128,3 +142,4 @@ const githubProfileGen = (arg) => {
 githubUsers.forEach((users) => {
   getProfile(users);
 })
+getProfileFollowers('projectlewis');
