@@ -63,3 +63,47 @@ const followersArray = [];
   luishrd
   bigknell
 */
+let data;
+const getProfile = (profile) => {
+  axios.get(`https://api.github.com/users/${profile}`)
+  .then((response) => {
+    githubProfileGen(response);
+  }).catch((error) => {
+    console.log(error);
+  })
+}
+
+const githubProfileGen = (arg) => {
+  console.log('made it!');
+  const {avatar_url, name, login, location, html_url, followers, following, bio} = arg.data;
+
+  const cards = document.querySelector('.cards');
+  const card = document.createElement('div');
+  card.className = 'card';
+  const img = document.createElement('img');
+  img.src = `${avatar_url}`
+  const cardInfo =document.createElement('div');
+  cardInfo.className = 'card-info'
+  const profileName = document.createElement('h3');
+  profileName.textContent = name
+  const username = document.createElement('p');
+  const profileLocation = document.createElement('p');
+  const profile = document.createElement('p');
+  const profileFollowers = document.createElement('p');
+  const profileFollowing = document.createElement('p');
+  const profileBio = document.createElement('p');
+
+  cards.appendChild(card);
+  card.appendChild(img);
+  card.appendChild(cardInfo);
+  cardInfo.appendChild(profileName);
+  // cardInfo.appendChild(username);
+  // cardInfo.appendChild(profileLocation);
+  // cardInfo.appendChild(profile);
+  // cardInfo.appendChild(profileFollowers);
+  // cardInfo.appendChild(profileFollowing);  
+  // cardInfo.appendChild(profileBio);  
+
+}
+
+getProfile('projectlewis')
