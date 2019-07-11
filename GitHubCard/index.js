@@ -4,14 +4,14 @@
 */
 // const axios = require('axios');
 
-axios.get('https://api.github.com/users/projectlewis')
-  .then((response) => {
-    // const gitRes = JSON.parse(response);
-    const {avatar_url, name, login, location, html_url, followers, following} = response.data;
-    console.log(avatar_url);
-  }).catch((error) => {
-    console.log(error);
-  })
+// axios.get('https://api.github.com/users/projectlewis')
+//   .then((response) => {
+//     // const gitRes = JSON.parse(response);
+//     const {avatar_url, name, login, location, html_url, followers, following} = response.data;
+//     console.log(avatar_url);
+//   }).catch((error) => {
+//     console.log(error);
+//   })
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -34,7 +34,7 @@ axios.get('https://api.github.com/users/projectlewis')
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = ['tetondan', 'dustinmyers', 'justsml', 'luishrd', 'bigkrell'];
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -119,4 +119,7 @@ const githubProfileGen = (arg) => {
 
 }
 
-getProfile('projectlewis')
+getProfile('projectlewis');
+followersArray.forEach((instructor) => {
+  getProfile(instructor);
+})
