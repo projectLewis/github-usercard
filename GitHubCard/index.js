@@ -34,7 +34,7 @@
           user, and adding that card to the DOM.
 */
 
-const followersArray = ['tetondan', 'dustinmyers', 'justsml', 'luishrd', 'bigkrell'];
+const githubUsers = ['projectlewis','tetondan', 'dustinmyers', 'justsml', 'luishrd', 'bigkrell'];
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -74,7 +74,6 @@ const getProfile = (profile) => {
 }
 
 const githubProfileGen = (arg) => {
-  console.log('made it!');
   const {avatar_url, name, login, location, html_url, followers, following, bio} = arg.data;
 
   const cards = document.querySelector('.cards');
@@ -83,6 +82,8 @@ const githubProfileGen = (arg) => {
 
   const img = document.createElement('img');
   img.src = `${avatar_url}`
+  img.alt = `${login}s avatar image`
+  img.className = 'avatar';
 
   const cardInfo =document.createElement('div');
   cardInfo.className = 'card-info'
@@ -95,7 +96,7 @@ const githubProfileGen = (arg) => {
   username.textContent = login;
 
   const profileLocation = document.createElement('p');
-  profileLocation.textContent = `Location: ${location}`;
+  profileLocation.textContent = location ? `Location: ${location}` : null;
 
   const profile = document.createElement('p');
   profile.innerHTML = `<a href=${html_url}>${html_url}</a>`
@@ -104,7 +105,11 @@ const githubProfileGen = (arg) => {
   const profileFollowing = document.createElement('p');
   profileFollowing.textContent = `Following: ${following}`
   const profileBio = document.createElement('p');
-  profileBio.textContent = `Bio: ${bio}`
+  profileBio.textContent = bio ? `Bio: ${bio}` : null;
+  const calendar = document.createElement('img');
+  calendar.src = `http://ghchart.rshah.org/${login}`;
+  calendar.alt = `${login} Github Chart`
+  calendar.className = 'calendar';
 
   cards.appendChild(card);
   card.appendChild(img);
@@ -115,11 +120,11 @@ const githubProfileGen = (arg) => {
   cardInfo.appendChild(profile);
   cardInfo.appendChild(profileFollowers);
   cardInfo.appendChild(profileFollowing);  
-  cardInfo.appendChild(profileBio);  
-
+  cardInfo.appendChild(profileBio);
+  cardInfo.appendChild(calendar);  
 }
 
-getProfile('projectlewis');
-followersArray.forEach((instructor) => {
-  getProfile(instructor);
+// getProfile('projectlewis');
+githubUsers.forEach((users) => {
+  getProfile(users);
 })
