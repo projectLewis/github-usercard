@@ -91,15 +91,16 @@ const githubProfileGen = (arg) => {
   card.className = 'card';
 
   const img = document.createElement('img');
-  img.src = `${avatar_url}`
+  img.src = `${avatar_url}`;
   img.alt = `${login}s avatar image`
   img.className = 'avatar';
 
   const cardInfo =document.createElement('div');
-  cardInfo.className = 'card-info'
+  cardInfo.className = 'card-info';
 
   const profileName = document.createElement('h3');
-  profileName.textContent = name
+  profileName.textContent = name;
+  profileName.className = 'name';
 
   const username = document.createElement('p');
   username.className = 'username';
@@ -109,7 +110,8 @@ const githubProfileGen = (arg) => {
   profileLocation.textContent = location ? `Location: ${location}` : null;
 
   const profile = document.createElement('p');
-  profile.innerHTML = `<a href=${html_url}>${html_url}</a>`
+  profile.innerHTML = `Profile: <a href=${html_url}>${html_url}</a>`;
+
   const profileFollowers = document.createElement('p');
   profileFollowers.textContent = `Followers: ${followers}`
   const profileFollowing = document.createElement('p');
@@ -120,7 +122,7 @@ const githubProfileGen = (arg) => {
   // Stretch for calendar
   const calendar = document.createElement('img');
   calendar.src = `http://ghchart.rshah.org/${login}`;
-  calendar.alt = `${login} Github Chart`
+  calendar.alt = `${login} Github Chart`;
   calendar.className = 'calendar';
 
   cards.appendChild(card);
