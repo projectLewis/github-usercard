@@ -80,29 +80,42 @@ const githubProfileGen = (arg) => {
   const cards = document.querySelector('.cards');
   const card = document.createElement('div');
   card.className = 'card';
+
   const img = document.createElement('img');
   img.src = `${avatar_url}`
+
   const cardInfo =document.createElement('div');
   cardInfo.className = 'card-info'
+
   const profileName = document.createElement('h3');
   profileName.textContent = name
+
   const username = document.createElement('p');
+  username.className = 'username';
+  username.textContent = login;
+
   const profileLocation = document.createElement('p');
+  profileLocation.textContent = `Location: ${location}`;
+
   const profile = document.createElement('p');
+  profile.innerHTML = `<a href=${html_url}>${html_url}</a>`
   const profileFollowers = document.createElement('p');
+  profileFollowers.textContent = `Followers: ${followers}`
   const profileFollowing = document.createElement('p');
+  profileFollowing.textContent = `Following: ${following}`
   const profileBio = document.createElement('p');
+  profileBio.textContent = `Bio: ${bio}`
 
   cards.appendChild(card);
   card.appendChild(img);
   card.appendChild(cardInfo);
   cardInfo.appendChild(profileName);
-  // cardInfo.appendChild(username);
-  // cardInfo.appendChild(profileLocation);
-  // cardInfo.appendChild(profile);
-  // cardInfo.appendChild(profileFollowers);
-  // cardInfo.appendChild(profileFollowing);  
-  // cardInfo.appendChild(profileBio);  
+  cardInfo.appendChild(username);
+  cardInfo.appendChild(profileLocation);
+  cardInfo.appendChild(profile);
+  cardInfo.appendChild(profileFollowers);
+  cardInfo.appendChild(profileFollowing);  
+  cardInfo.appendChild(profileBio);  
 
 }
 
